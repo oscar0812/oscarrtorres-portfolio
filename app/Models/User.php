@@ -1,43 +1,68 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class User
+ *
+ * @property int $id
+ * @property string $email
+ * @property string $password
+ * @property string|null $remember_token
+ * @property string $name
+ * @property string $work_title
+ * @property string $self_summary
+ * @property string $github_url
+ * @property string $linkedin_url
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ *
+ * @property Collection|Project[] $projects
+ * @property Collection|WorkExperience[] $work_experiences
+ *
+ * @package App\Models
+ */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
+		use HasFactory, Notifiable;
+    protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+    protected $fillable = [
+        'email',
+        'password',
+        'remember_token',
+        'name',
+        'work_title',
+        'self_summary',
+        'github_url',
+        'linkedin_url'
     ];
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function work_experiences()
+    {
+        return $this->hasMany(WorkExperience::class);
+    }
 }
