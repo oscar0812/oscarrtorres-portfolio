@@ -13,6 +13,10 @@
                         <div class="card-body">
                             <h6><a href="#">Lorem Ipsum</a></h6>
                             <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
+                            <button type="button" class="btn btn-outline-primary">Full Details</button>
+                            <button type="button" data-link-to="#" class="btn btn-outline-dark custom-btn-hover"><i class="icon ion-social-github"></i> Github</button>
+                            <button type="button" data-link-to="https://google.com" class="btn btn-outline-success"><i class="icon ion-link"></i> Link</button>
+
                         </div>
                     </div>
                 </div>

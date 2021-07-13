@@ -5,16 +5,30 @@
         <div class="container">
             <div class="avatar" style="background-image:url(&quot;assets/img/avatars/avatar.jpg&quot;);"></div>
             <div class="about-me">
-                <p>Hello! I am <strong>John Smith</strong>. I work as interface and front end developer. I have passion for pixel perfect, minimal and easy to use interfaces.</p><a class="btn btn-outline-primary" role="button" href="#">Hire me</a>
+                <p>Hello, my name is <b>Oscar Rafael Torres</b>. I hold both a Bachelor's and a Master's degree in Computer Science from the <b>University of Texas Rio Grande Valley</b>. My engineering interests include artificial intelligence, web
+                    development, android development, reverse engineering, and internet-of-things. My other interests include teaching computer science and taking care of pets.</p>
+                <a class="btn btn-outline-primary" role="button" href="{{ route('hire-me') }}">Hire me</a>
             </div>
         </div>
     </section>
     <section class="portfolio-block photography">
         <div class="container">
             <div class="row g-0">
-                <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image" src="assets/img/nature/image5.jpg"></a></div>
-                <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image" src="assets/img/nature/image2.jpg"></a></div>
-                <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image" src="assets/img/tech/image4.jpg"></a></div>
+                <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a href="#">
+                        <img class="img-fluid image" src="assets/img/nature/image2.jpg">
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a href="#">
+                        <img class="img-fluid image" src="assets/img/nature/image2.jpg">
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a href="#">
+                        <img class="img-fluid image" src="assets/img/tech/image4.jpg">
+                    </a>
+                </div>
             </div>
         </div>
     </section>
