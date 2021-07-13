@@ -18,10 +18,10 @@
                   class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('cv') }}">CV</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('hire-me') }}">Hire me</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home-section">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects-section">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cv-section">CV</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hire-section">Hire me</a></li>
                 </ul>
             </div>
         </div>
@@ -31,10 +31,11 @@
 
     <footer class="page-footer">
         <div class="container">
+            <p>Portfolio - Oscar Rafael Torres</p>
             <div class="social-icons">
-              <a href="https://github.com/oscar0812"><i class="icon ion-social-github"></i></a>
-              <a href="https://www.linkedin.com/in/oscartorres01/"><i class="icon ion-social-linkedin"></i></a>
-              <a href="mailto:oscar0812torres@gmail.com"><i class="icon ion-email"></i></a></div>
+              <a href="{{ $user->github_url }}"><i class="icon ion-social-github"></i></a>
+              <a href="{{ $user->linkedin_url }}"><i class="icon ion-social-linkedin"></i></a>
+              <a href="mailto:{{ $user->email }}"><i class="icon ion-email"></i></a></div>
         </div>
     </footer>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

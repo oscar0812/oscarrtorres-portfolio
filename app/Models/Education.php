@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Education extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     protected $table = 'education';
     public $timestamps = false;
 
@@ -39,9 +40,14 @@ class Education extends Model
     protected $fillable = [
         'user_id',
         'degree_title',
-        'company_name',
+        'institution_name',
         'short_description',
         'start_date',
         'end_date'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

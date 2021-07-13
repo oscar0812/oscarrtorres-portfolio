@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\SkillRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class UserCrudController
+ * Class SkillCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class UserCrudController extends CrudController
+class SkillCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class UserCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\User::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
-        CRUD::setEntityNameStrings('user', 'users');
+        CRUD::setModel(\App\Models\Skill::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/skill');
+        CRUD::setEntityNameStrings('skill', 'skills');
     }
 
     /**
@@ -39,14 +39,9 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('email');
-        // CRUD::column('password');
-        // CRUD::column('remember_token');
+        CRUD::column('user_id');
         CRUD::column('name');
-        CRUD::column('work_title');
-        CRUD::column('self_summary');
-        CRUD::column('github_url');
-        CRUD::column('linkedin_url');
+        CRUD::column('progress');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -63,29 +58,11 @@ class UserCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(UserRequest::class);
+        CRUD::setValidation(SkillRequest::class);
 
-        CRUD::field('email');
-        CRUD::field('password');
-        // CRUD::field('remember_token');
+        CRUD::field('user_id');
         CRUD::field('name');
-        CRUD::addField([
-            'label' => "Project Image",
-            'name' => "image_url",
-            'type' => 'image',
-            'crop' => true, // set to true to allow cropping, false to disable
-            'aspect_ratio' => 1, // omit or set to 0 to allow any aspect ratio
-            // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
-            // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        ]);
-        CRUD::field('work_title');
-
-        CRUD::field('github_url');
-        CRUD::field('linkedin_url');
-
-        CRUD::addField(['name'=>'self_summary',
-            'type'  => 'wysiwyg'
-        ]);
+        CRUD::field('progress');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

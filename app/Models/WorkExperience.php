@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class WorkExperience extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     protected $table = 'work_experiences';
     public $timestamps = false;
 

@@ -40,13 +40,14 @@ class ProjectCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('user_id');
-        CRUD::column('image_url');
         CRUD::column('title');
+        CRUD::column('importance_score');
         CRUD::column('start_date');
         CRUD::column('end_date');
         CRUD::column('hosted_at_url');
-        CRUD::column('github_link');
-        CRUD::field('importance_score');
+        CRUD::column('github_url');
+
+        CRUD::column('image_url');
         CRUD::column('short_description');
         CRUD::column('long_description');
 
@@ -68,7 +69,7 @@ class ProjectCrudController extends CrudController
         CRUD::setValidation(ProjectRequest::class);
 
         CRUD::field('user_id');
-        $this->crud->addField([
+        CRUD::addField([
             'label' => "Project Image",
             'name' => "image_url",
             'type' => 'image',
@@ -77,13 +78,8 @@ class ProjectCrudController extends CrudController
             // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
             // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
         ]);
-        CRUD::field('title');
 
-        CRUD::field('start_date');
-        CRUD::field('end_date');
-        CRUD::field('hosted_at_url');
-        CRUD::field('github_link');
-        CRUD::field('importance_score');
+        CRUD::field('title');
 
         CRUD::addField(['name'=>'short_description',
             'type'  => 'wysiwyg'
@@ -91,6 +87,12 @@ class ProjectCrudController extends CrudController
         CRUD::addField(['name'=>'long_description',
             'type'  => 'wysiwyg'
         ]);
+
+        CRUD::field('start_date');
+        CRUD::field('end_date');
+        CRUD::field('hosted_at_url');
+        CRUD::field('github_url');
+        CRUD::field('importance_score');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

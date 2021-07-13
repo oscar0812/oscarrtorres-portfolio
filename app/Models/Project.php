@@ -23,7 +23,7 @@ use Intervention\Image\ImageManagerStatic as Image;
  * @property Carbon|null $start_date
  * @property Carbon|null $end_date
  * @property string $hosted_at_url
- * @property string|null $github_link
+ * @property string|null $github_url
  * @property int $importance_score
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -55,13 +55,25 @@ class Project extends Model
         'start_date',
         'end_date',
         'hosted_at_url',
-        'github_link',
+        'github_url',
         'importance_score'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function attrEmpty($attr_name)
+    {
+        if (isset($this->attributes[$attr_name])) {
+            $v = $this->attributes[$attr_name];
+            if ($v != null && $v != "") {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public function setImageUrlAttribute($value)
