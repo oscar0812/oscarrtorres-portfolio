@@ -16,9 +16,9 @@
         <div class="container"><a class="navbar-brand logo" href="{{ route('home') }}">Oscar Rafael Torres</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Background</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="projects-grid-cards.html">My Contribution</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cv.html">Result</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#background">Background</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#contribution">My Contribution</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#result">Result</a></li>
                 </ul>
             </div>
         </div>
