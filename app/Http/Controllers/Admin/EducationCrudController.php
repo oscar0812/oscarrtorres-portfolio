@@ -67,7 +67,14 @@ class EducationCrudController extends CrudController
         CRUD::field('user_id');
         CRUD::field('degree_title');
         CRUD::field('institution_name');
-        CRUD::field('short_description');
+        CRUD::addField(['name'=>'short_description',
+            'type'  => 'tinymce',
+            // optional overwrite of the configuration array
+            'options' => [
+                'plugins' => 'image,link,media,anchor,autolink,image,imagetools,table,codesample,code',
+                'toolbar' => 'undo redo formatselect fontsizeselect bullist numlist link image bold italic underline forecolor backcolor image imagetools table anchor codesample code',
+            ],
+        ]);
         CRUD::field('start_date');
         CRUD::field('end_date');
 

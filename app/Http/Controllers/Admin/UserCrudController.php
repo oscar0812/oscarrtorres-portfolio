@@ -70,7 +70,7 @@ class UserCrudController extends CrudController
         // CRUD::field('remember_token');
         CRUD::field('name');
         CRUD::addField([
-            'label' => "Project Image",
+            'label' => "PFP",
             'name' => "image_url",
             'type' => 'image',
             'crop' => true, // set to true to allow cropping, false to disable
@@ -84,7 +84,12 @@ class UserCrudController extends CrudController
         CRUD::field('linkedin_url');
 
         CRUD::addField(['name'=>'self_summary',
-            'type'  => 'wysiwyg'
+            'type'  => 'tinymce',
+            // optional overwrite of the configuration array
+            'options' => [
+                'plugins' => 'image,link,media,anchor,autolink,image,imagetools,table,codesample,code',
+                'toolbar' => 'undo redo formatselect fontsizeselect bullist numlist link image bold italic underline forecolor backcolor image imagetools table anchor codesample code',
+            ],
         ]);
 
         /**

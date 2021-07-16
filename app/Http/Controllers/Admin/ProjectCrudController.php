@@ -82,10 +82,16 @@ class ProjectCrudController extends CrudController
         CRUD::field('title');
 
         CRUD::addField(['name'=>'short_description',
-            'type'  => 'wysiwyg'
+            'type'  => 'tinymce',
+            // optional overwrite of the configuration array
+            'options' => [
+                'plugins' => 'image,link,media,anchor,autolink,image,imagetools,table,codesample,code',
+                'toolbar' => 'undo redo formatselect fontsizeselect bullist numlist link image bold italic underline forecolor backcolor image imagetools table anchor codesample code',
+            ],
         ]);
-        CRUD::addField(['name'=>'long_description',
-            'type'  => 'wysiwyg'
+        CRUD::addField([   // TinyMCE
+            'name'  => 'long_description',
+            'type'  => 'tinymce',
         ]);
 
         CRUD::field('start_date');

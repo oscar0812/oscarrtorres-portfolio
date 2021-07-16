@@ -22,10 +22,8 @@ Route::get('/', function () {
     return view('index', ['user'=>$user, 'projects'=>$projects, 'work_experiences'=>$work_experiences, 'education'=>$education, 'skills'=>$skills]);
 })->name('home');
 
-Route::get('/cv', function () {
-    return view('cv');
-})->name('cv');
-
-Route::get('/hire-me', function () {
-    return view('hire');
-})->name('hire-me');
+Route::get('/project-details/{id}', function ($id) {
+    $user = \App\Models\User::where('id', 1)->first();
+    $project = \App\Models\Project::where('id', $id)->first();
+    return view('project-details', ['user'=>$user, 'project'=>$project]);
+})->name('project-details');
