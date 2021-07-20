@@ -39,8 +39,8 @@ class WorkExperienceCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('user_id');
         CRUD::column('work_title');
+        // CRUD::column('user_id');
         CRUD::column('company_name');
         CRUD::column('short_description');
         CRUD::column('start_date');
@@ -69,7 +69,10 @@ class WorkExperienceCrudController extends CrudController
         CRUD::addField(['name'=>'short_description',
             'type'  => 'tinymce',
             // optional overwrite of the configuration array
-            'options' => ['plugins' => 'image,link,media,anchor'],
+            'options' => [
+                'plugins' => 'lists,image,link,media,anchor,autolink,imagetools,autoresize,table,codesample,code',
+                'toolbar' => 'undo redo formatselect fontsizeselect bullist numlist indent link image bold italic underline forecolor backcolor table anchor codesample code',
+            ],
         ]);
         CRUD::field('start_date');
         CRUD::field('end_date');

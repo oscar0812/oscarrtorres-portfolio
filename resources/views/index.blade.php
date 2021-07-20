@@ -87,7 +87,7 @@
                                 <h3>{{ $we->work_title }}</h3>
                                 <h4 class="organization">{{ $we->company_name }}</h4>
                             </div>
-                            <div class="col-md-6"><span class="period">{{ $we->start_date->format('M d, Y') }} - {{ $we->end_date->format('M d, Y') }}</span></div>
+                            <div class="col-md-6"><span class="period">{{ $we->start_date->format('M, Y') }} - {{ $we->end_date->format('M, Y') }}</span></div>
                         </div>
                         <p class="text-muted">{!! $we->short_description !!}</p>
                     </div>
@@ -106,28 +106,47 @@
                                 <h3>{{ $ed->degree_title }}</h3>
                                 <h4 class="organization">{{ $ed->institution_name }}</h4>
                             </div>
-                            <div class="col-6"><span class="period">{{ $ed->start_date->format('M d, Y') }} - {{ $ed->end_date->format('M d, Y') }}</span></div>
+                            <div class="col-6"><span class="period">{{ $ed->start_date->format('M, Y') }} - {{ $ed->end_date->format('M, Y') }}</span></div>
                         </div>
                         <p class="text-muted">{{ $ed->short_description }}</p>
                     </div>
                     @endforeach
-
                 </div>
-                <div class="group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="skills portfolio-info-card">
-                                <h2>Skills</h2>
-                                @foreach ($skills as $skill)
-                                  <h3>{{ $skill->name }}</h3>
-                                  <div class="progress">
-                                      <div class="progress-bar" aria-valuenow="{{ $skill->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $skill->progress }}%;"><span class="visually-hidden">{{ $skill->progress }}%</span></div>
-                                  </div>
-                                @endforeach
+            </div>
+        </section>
 
-                            </div>
+        <section class="portfolio-block" id="skills-section" style="padding-top:100px">
+            <div class="container">
+                <div class="work-experience group">
+                    <div class="heading">
+                        <h2 class="text-center mb-4">Skills</h2>
+                        <div class="row">
+                            @php $row_num = 12/count($skills_arr);
+                                 if($row_num < 4) {
+                                   $row_num = 4; // 4 is min, dont want too small col
+                                 }
+                            @endphp
+                            @foreach ($skills_arr as $key => $skills)
+                              <div class="col-md-{{ $row_num }}">
+                                  <div class="skills portfolio-info-card">
+                                      <h2>{{ $skill_group_names[$key] }}</h2>
+                                      @foreach ($skills as $skill)
+                                        <h3>{{ $skill->name }}</h3>
+                                        <div class="progress">
+                                            <div class="progress-bar" aria-valuenow="{{ $skill->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $skill->progress }}%;"><span class="visually-hidden">{{ $skill->progress }}%</span></div>
+                                        </div>
+                                      @endforeach
+
+                                  </div>
+                              </div>
+                            @endforeach
+
                         </div>
                     </div>
+                </div>
+
+                <div class="group">
+
                 </div>
             </div>
         </section>

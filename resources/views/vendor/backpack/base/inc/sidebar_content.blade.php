@@ -5,4 +5,5 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('work-experience') }}'><i class='nav-icon la la-question'></i> Work Experiences</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('education') }}'><i class='nav-icon la la-question'></i> Education</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('skill') }}'><i class='nav-icon la la-question'></i> Skills</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('skill-group') }}'><i class='nav-icon la la-question'></i> Skill Groups</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('elfinder') }}\"><i class="nav-icon la la-files-o"></i> <span>{{ trans('backpack::crud.file_manager') }}</span></a></li>

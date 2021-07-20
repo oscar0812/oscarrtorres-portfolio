@@ -19,6 +19,8 @@ class SkillCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
@@ -39,9 +41,16 @@ class SkillCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('user_id');
+        // CRUD::column('user_id');
         CRUD::column('name');
         CRUD::column('progress');
+        CRUD::addColumn(['name' => 'skill_group_id',
+          'type'=>'relationship',
+          'attribute'=>'name',
+          'entity'    => 'skill_group',
+          'model'     => 'App\Models\SkillGroup',
+
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -64,6 +73,16 @@ class SkillCrudController extends CrudController
         CRUD::field('name');
         CRUD::field('progress');
 
+        CRUD::addField([
+          'type' => "relationship",
+          'name' => 'skill_group', // the method on your model that defines the relationship
+          'ajax' => false,
+          'inline_create' => [
+              'entity' => 'skill-group', // the entity in singular
+
+            ]
+        ]);
+
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
@@ -80,5 +99,12 @@ class SkillCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function fetchSkill_group()
+    {
+        // $this->setupCreateOperation();
+
+        return $this->fetch(\App\Models\SkillGroup::class);
     }
 }

@@ -39,8 +39,8 @@ class ProjectCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('user_id');
         CRUD::column('title');
+        // CRUD::column('user_id');
         CRUD::column('importance_score');
         CRUD::column('start_date');
         CRUD::column('end_date');
@@ -85,8 +85,9 @@ class ProjectCrudController extends CrudController
             'type'  => 'tinymce',
             // optional overwrite of the configuration array
             'options' => [
-                'plugins' => 'image,link,media,anchor,autolink,image,imagetools,table,codesample,code',
-                'toolbar' => 'undo redo formatselect fontsizeselect bullist numlist link image bold italic underline forecolor backcolor image imagetools table anchor codesample code',
+                'plugins' => 'lists,image,link,media,anchor,autolink,imagetools,autoresize,table,codesample,code',
+                'toolbar' => 'undo redo formatselect fontsizeselect bullist numlist indent link image bold italic underline forecolor backcolor table anchor codesample code',
+                'imagetools_cors_hosts'=> [ 'homestead.com', 'oscarrtorres.com' ],
             ],
         ]);
         CRUD::addField([   // TinyMCE

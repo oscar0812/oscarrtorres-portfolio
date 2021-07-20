@@ -9,18 +9,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="{{ asset('assets/fonts/ionicons.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/default.min.css">
 </head>
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="{{ route('home') }}">Oscar Rafael Torres</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#background">Background</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#contribution">My Contribution</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#result">Result</a></li>
-                </ul>
-            </div>
+        <div class="container"><a class="navbar-brand logo" href="{{ route('home') }}">Oscar Rafael Torres</a>
         </div>
     </nav>
     <main class="page projects-page">
@@ -49,6 +43,8 @@
     </footer>
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 
 </body>
 

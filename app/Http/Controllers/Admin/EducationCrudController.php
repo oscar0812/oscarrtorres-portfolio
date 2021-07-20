@@ -40,8 +40,8 @@ class EducationCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('user_id');
         CRUD::column('degree_title');
+        // CRUD::column('user_id');
         CRUD::column('institution_name');
         CRUD::column('short_description');
         CRUD::column('start_date');
@@ -71,8 +71,8 @@ class EducationCrudController extends CrudController
             'type'  => 'tinymce',
             // optional overwrite of the configuration array
             'options' => [
-                'plugins' => 'image,link,media,anchor,autolink,image,imagetools,table,codesample,code',
-                'toolbar' => 'undo redo formatselect fontsizeselect bullist numlist link image bold italic underline forecolor backcolor image imagetools table anchor codesample code',
+                'plugins' => 'lists,image,link,media,anchor,autolink,imagetools,autoresize,table,codesample,code',
+                'toolbar' => 'undo redo formatselect fontsizeselect bullist numlist indent link image bold italic underline forecolor backcolor table anchor codesample code',
             ],
         ]);
         CRUD::field('start_date');

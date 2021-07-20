@@ -6,18 +6,20 @@
 sudo chown -R $USER:www-data storage
 sudo chown -R $USER:www-data storage/app
 sudo chown -R $USER:www-data bootstrap/cache
-# sudo chown -R $USER:www-data public/uploads
-# sudo chown -R $USER:www-data public/uploads/*
-# sudo chown -R $USER:www-data public/uploads/*/*
-# sudo chown -R $USER:www-data public/uploads/games
+sudo chown -R $USER:www-data public/uploads
+sudo chown -R $USER:www-data public/uploads/*
+sudo chown -R $USER:www-data public/uploads/*/*
+sudo chown -R $USER:www-data public/uploads/*/*/*
+sudo chown -R $USER:www-data public/uploads/*/*/*
 
 chmod -R 775 storage
 chmod -R 775 storage/app
 chmod -R 775 bootstrap/cache
-# chmod -R 775 public/uploads
-# chmod -R 775 public/uploads/*
-# chmod -R 775 public/uploads/*/*
-# chmod -R 775 public/uploads/games
+chmod -R 775 public/uploads
+chmod -R 775 public/uploads/*
+chmod -R 775 public/uploads/*/*
+chmod -R 775 public/uploads/*/*/*
+chmod -R 775 public/uploads/*/*/*
 
 # set the timezone
 sudo timedatectl set-timezone America/Chicago
