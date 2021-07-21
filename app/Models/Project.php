@@ -95,6 +95,9 @@ class Project extends Model
 
         // clear out any ununsed images
         foreach (\Storage::disk($disk)->files($destination_path) as $file_path) {
+            if (Str::contains($file_path, '_keep_')) {
+                continue;
+            }
             $public_destination_path = Str::replaceFirst('public/', '', $file_path);
             $project_obj = \App\Models\Project::where('image_url', $public_destination_path)->first();
             if ($project_obj == null) {
