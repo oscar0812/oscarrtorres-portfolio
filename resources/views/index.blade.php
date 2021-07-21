@@ -48,7 +48,13 @@
                     @foreach ($chunk as $project)
                     <div class="col-md-6 col-lg-3">
                         <div class="card border-0">
-                            <a href="#">
+                            @php
+                              $url_ = '#';
+                              if(!$project->attrEmpty('long_description')) {
+                                $url_ = route('project-details', ['id'=>$project->id]);
+                              }
+                            @endphp
+                            <a href="{{ $url_ }}">
                                 <img class="card-img-top scale-on-hover" src="{{ $project->image_url }}" alt="Card Image">
                             </a>
                             <div class="card-body">
@@ -87,7 +93,7 @@
                                 <h3>{{ $we->work_title }}</h3>
                                 <h4 class="organization">{{ $we->company_name }}</h4>
                             </div>
-                            <div class="col-md-6"><span class="period">{{ $we->start_date->format('M, Y') }} - {{ $we->end_date->format('M, Y') }}</span></div>
+                            <div class="col-md-6"><span class="period">{{ $we->start_date->format('F Y') }} - {{ $we->end_date->format('F Y') }}</span></div>
                         </div>
                         <p class="text-muted">{!! $we->short_description !!}</p>
                     </div>
@@ -106,9 +112,9 @@
                                 <h3>{{ $ed->degree_title }}</h3>
                                 <h4 class="organization">{{ $ed->institution_name }}</h4>
                             </div>
-                            <div class="col-6"><span class="period">{{ $ed->start_date->format('M, Y') }} - {{ $ed->end_date->format('M, Y') }}</span></div>
+                            <div class="col-6"><span class="period">{{ $ed->start_date->format('F Y') }} - {{ $ed->end_date->format('F Y') }}</span></div>
                         </div>
-                        <p class="text-muted">{{ $ed->short_description }}</p>
+                        <p class="text-muted">{!! $ed->short_description !!}</p>
                     </div>
                     @endforeach
                 </div>
@@ -126,10 +132,10 @@
                                    $row_num = 4; // 4 is min, dont want too small col
                                  }
                             @endphp
-                            @foreach ($skills_arr as $key => $skills)
+                            @foreach ($skills_arr as $skill_name => $skills)
                               <div class="col-md-{{ $row_num }}">
                                   <div class="skills portfolio-info-card">
-                                      <h2>{{ $skill_group_names[$key] }}</h2>
+                                      <h2>{{ $skill_name }}</h2>
                                       @foreach ($skills as $skill)
                                         <h3>{{ $skill->name }}</h3>
                                         <div class="progress">
