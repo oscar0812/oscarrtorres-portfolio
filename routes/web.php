@@ -39,5 +39,8 @@ Route::get('/', function () {
 Route::get('/project-details/{id}', function ($id) {
     $user = \App\Models\User::where('id', 1)->first();
     $project = \App\Models\Project::where('id', $id)->first();
-    return view('project-details', ['user'=>$user, 'project'=>$project]);
+
+    $skill_arr = $project->skillArr();
+
+    return view('project-details', ['user'=>$user, 'project'=>$project, 'skill_arr'=>$skill_arr]);
 })->name('project-details');

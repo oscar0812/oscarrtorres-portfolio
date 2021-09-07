@@ -19,6 +19,8 @@ class UserCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate; }
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
@@ -108,5 +110,17 @@ class UserCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function update()
+    {
+        // to avoid overriding password if its empty
+        $request = CRUD::getRequest();
+        if (!$request->password) {
+            $request->request->remove('password');
+        }
+        $response = $this->traitUpdate();
+        // do something after save
+        return $response;
     }
 }

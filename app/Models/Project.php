@@ -38,7 +38,8 @@ class Project extends Model
     protected $table = 'projects';
 
     protected $casts = [
-        'user_id' => 'int'
+        'user_id' => 'int',
+        'importance_score' => 'int'
     ];
 
     protected $dates = [
@@ -56,12 +57,24 @@ class Project extends Model
         'end_date',
         'hosted_at_url',
         'github_url',
-        'importance_score'
+        'importance_score',
+        'skill_list'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function skillArr()
+    {
+        $skill_arr = explode(',', $this->skill_list);
+
+        for ($i=0; $i < count($skill_arr); $i++) {
+            $skill_arr[$i]=trim($skill_arr[$i]);
+        }
+
+        return $skill_arr;
     }
 
     public function attrEmpty($attr_name)

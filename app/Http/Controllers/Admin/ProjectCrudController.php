@@ -100,6 +100,7 @@ class ProjectCrudController extends CrudController
         CRUD::field('hosted_at_url');
         CRUD::field('github_url');
         CRUD::field('importance_score');
+        CRUD::addField(['name' => 'skill_list', 'label' => 'Skill list (EXAMPLE: PHP, Laravel, Bootstrap, ...)']);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

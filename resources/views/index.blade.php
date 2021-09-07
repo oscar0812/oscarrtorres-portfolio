@@ -27,13 +27,21 @@
         </div>
     </nav>
 
-    <main class="page lanidng-page">
+    <main class="page landing-page">
         <section class="portfolio-block block-intro border-bottom" id="home-section">
             <div class="container">
                 <div class="avatar" style="background-image:url(&quot;{{ $user->image_url }}&quot;);"></div>
+                <div class="page-footer pt-0 border-0">
+                  <div class="container">
+                    <div class="social-icons mt-0 mb-0">
+                      <a href="{{ $user->github_url }}"><i class="icon ion-social-github"></i></a>
+                      <a href="{{ $user->linkedin_url }}"><i class="icon ion-social-linkedin"></i></a>
+                      <a href="mailto:{{ $user->email }}"><i class="icon ion-email"></i></a>
+                    </div>
+                  </div>
+                </div>
                 <div class="about-me">
                     {!! $user->self_summary !!}
-                    <a class="btn btn-outline-primary" role="button" href="mailto:{{ $user->email }}">Email me</a>
                 </div>
             </div>
         </section>
@@ -50,6 +58,12 @@
                         <div class="card border-0">
                             @php
                               $url_ = '#';
+                              if(!$project->attrEmpty('github_url')) {
+                                $url_ = $project->github_url;
+                              }
+                              if(!$project->attrEmpty('hosted_at_url')) {
+                                $url_ = $project->hosted_at_url;
+                              }
                               if(!$project->attrEmpty('long_description')) {
                                 $url_ = route('project-details', ['id'=>$project->id]);
                               }
@@ -93,9 +107,24 @@
                                 <h3>{{ $we->work_title }}</h3>
                                 <h4 class="organization">{{ $we->company_name }}</h4>
                             </div>
-                            <div class="col-md-6"><span class="period">{{ $we->start_date->format('F Y') }} - {{ $we->end_date->format('F Y') }}</span></div>
+                            @if($we->start_date != NULL)
+                            @php
+                            $end_format = 'Present';
+                            if($we->end_date != NULL) {
+                              $end_format = $we->end_date->format('F Y');
+                            }
+                            @endphp
+                            <div class="col-md-6">
+                              <span class="period">{{ $we->start_date->format('F Y') }} - {{ $end_format }}</span>
+                            </div>
+                            @endif
                         </div>
-                        <p class="text-muted">{!! $we->short_description !!}</p>
+                        <div class="">
+                          <div class="text-muted">
+                            {!! $we->short_description !!}
+                          </div>
+                        </div>
+
                     </div>
                     @endforeach
                 </div>
@@ -112,9 +141,19 @@
                                 <h3>{{ $ed->degree_title }}</h3>
                                 <h4 class="organization">{{ $ed->institution_name }}</h4>
                             </div>
-                            <div class="col-6"><span class="period">{{ $ed->start_date->format('F Y') }} - {{ $ed->end_date->format('F Y') }}</span></div>
+                            @if($ed->start_date != NULL)
+                            @php
+                            $end_format = 'Present';
+                            if($ed->end_date != NULL) {
+                              $end_format = $ed->end_date->format('F Y');
+                            }
+                            @endphp
+                            <div class="col-md-6">
+                              <span class="period">{{ $ed->start_date->format('F Y') }} - {{ $end_format }}</span>
+                            </div>
+                            @endif
                         </div>
-                        <p class="text-muted">{!! $ed->short_description !!}</p>
+                        <div class="text-muted">{!! $ed->short_description !!}</div>
                     </div>
                     @endforeach
                 </div>
@@ -166,7 +205,8 @@
             <div class="social-icons">
               <a href="{{ $user->github_url }}"><i class="icon ion-social-github"></i></a>
               <a href="{{ $user->linkedin_url }}"><i class="icon ion-social-linkedin"></i></a>
-              <a href="mailto:{{ $user->email }}"><i class="icon ion-email"></i></a></div>
+              <a href="mailto:{{ $user->email }}"><i class="icon ion-email"></i></a>
+            </div>
         </div>
     </footer>
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>

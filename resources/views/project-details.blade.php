@@ -23,6 +23,21 @@
                 <div class="avatar" style="background-image:url(&quot;{{ asset($project->image_url) }}&quot;);"></div>
                 <div class="about-me">
                     <h2>{{ $project->title }}</h2>
+                    @if($project->start_date !=null)
+                    @php
+                    $end_format = 'Present';
+                    if($project->end_date != NULL) {
+                      $end_format = $project->end_date->format('F d, Y');
+                    }
+                    @endphp
+                    <small class="mb-0 text-muted">{{ $project->start_date->format('F d, Y') }} - {{ $end_format }}</small>
+                    <br>
+                    @endif
+                    @foreach ($skill_arr as $skill)
+                      <span class="badge rounded-pill bg-primary">{{ $skill }}</span>
+
+                    @endforeach
+
                 </div>
             </div>
         </section>
