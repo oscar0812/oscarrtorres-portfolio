@@ -43,9 +43,9 @@ Route::get('/', function () {
     'skills_arr'=>$skills_arr]);
 })->name('home');
 
-Route::get('/project-details/{id}', function ($id) {
+Route::get('/project-details/{slug}', function ($slug) {
     $user = \App\Models\User::where('id', 1)->first();
-    $project = \App\Models\Project::where('id', $id)->first();
+    $project = \App\Models\Project::where('slug', $slug)->first();
 
     $skill_arr = $project->skillArr();
 

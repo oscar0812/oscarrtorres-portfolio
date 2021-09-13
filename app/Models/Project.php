@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+
+
 /**
  * Class Project
  *
@@ -35,6 +38,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 class Project extends Model
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
+    use Sluggable;
+
     protected $table = 'projects';
 
     protected $casts = [
@@ -58,8 +63,18 @@ class Project extends Model
         'hosted_at_url',
         'github_url',
         'importance_score',
-        'skill_list'
+        'skill_list',
+        'slug'
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     public function user()
     {

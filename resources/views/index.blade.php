@@ -65,7 +65,7 @@
                                 $url_ = $project->hosted_at_url;
                               }
                               if(!$project->attrEmpty('long_description')) {
-                                $url_ = route('project-details', ['id'=>$project->id]);
+                                $url_ = route('project-details', ['slug'=>$project->slug]);
                               }
                             @endphp
                             <a href="{{ $url_ }}">
@@ -77,7 +77,7 @@
                                 </h6>
                                 {!! $project->short_description !!}
                                 @if(!$project->attrEmpty('long_description'))
-                                <button type="button" data-link-to="{{ route('project-details', ['id'=>$project->id]) }}" class="btn btn-outline-primary">Details</button>
+                                <button type="button" data-link-to="{{ route('project-details', ['slug'=>$project->slug]) }}" class="btn btn-outline-primary">Details</button>
                                 @endif
                                 @if(!$project->attrEmpty('github_url'))
                                 <button type="button" data-link-to="{{ $project->github_url }}" class="btn btn-outline-dark custom-btn-hover"><i class="icon ion-social-github"></i> Github</button>
