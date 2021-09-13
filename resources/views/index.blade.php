@@ -97,6 +97,9 @@
         <section class="portfolio-block cv" id="cv-section" style="padding-top:100px">
             <div class="container">
                 @foreach ($cv_data as $cv_section)
+                @if(count($cv_section['entries']) == 0)
+                  @php continue; @endphp
+                @endif
                 <div class="group">
                     <div class="heading">
                         <h2 class="text-center">{{ $cv_section['name'] }}</h2>

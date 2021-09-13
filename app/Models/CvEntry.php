@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CvEntry extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     protected $table = 'cv_entries';
 
     protected $casts = [

@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CvSection extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     protected $table = 'cv_sections';
 
     protected $casts = [
