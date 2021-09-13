@@ -96,67 +96,41 @@
 
         <section class="portfolio-block cv" id="cv-section" style="padding-top:100px">
             <div class="container">
-                <div class="work-experience group">
+                @foreach ($cv_data as $cv_section)
+                <div class="group">
                     <div class="heading">
-                        <h2 class="text-center">Work Experience</h2>
+                        <h2 class="text-center">{{ $cv_section['name'] }}</h2>
                     </div>
-                    @foreach ($work_experiences as $we)
+                    @foreach ($cv_section['entries'] as $cv_entry)
                     <div class="item">
                         <div class="row">
                             <div class="col-md-6">
-                                <h3>{{ $we->work_title }}</h3>
-                                <h4 class="organization">{{ $we->company_name }}</h4>
+                                <h3>{{ $cv_entry->title }}</h3>
+                                <h4 class="organization">{{ $cv_entry->place_name }}</h4>
                             </div>
-                            @if($we->start_date != NULL)
+                            @if($cv_entry->start_date != NULL)
                             @php
                             $end_format = 'Present';
-                            if($we->end_date != NULL) {
-                              $end_format = $we->end_date->format('F Y');
+                            if($cv_entry->end_date != NULL) {
+                              $end_format = $cv_entry->end_date->format('F Y');
                             }
                             @endphp
                             <div class="col-md-6">
-                              <span class="period">{{ $we->start_date->format('F Y') }} - {{ $end_format }}</span>
+                              <span class="period">{{ $cv_entry->start_date->format('F Y') }} - {{ $end_format }}</span>
                             </div>
                             @endif
                         </div>
                         <div class="">
                           <div class="text-muted">
-                            {!! $we->short_description !!}
+                            {!! $cv_entry->short_description !!}
                           </div>
                         </div>
 
                     </div>
                     @endforeach
                 </div>
+                @endforeach
 
-
-                <div class="education group">
-                    <div class="heading">
-                        <h2 class="text-center">Education</h2>
-                    </div>
-                    @foreach ($education as $ed)
-                    <div class="item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>{{ $ed->degree_title }}</h3>
-                                <h4 class="organization">{{ $ed->institution_name }}</h4>
-                            </div>
-                            @if($ed->start_date != NULL)
-                            @php
-                            $end_format = 'Present';
-                            if($ed->end_date != NULL) {
-                              $end_format = $ed->end_date->format('F Y');
-                            }
-                            @endphp
-                            <div class="col-md-6">
-                              <span class="period">{{ $ed->start_date->format('F Y') }} - {{ $end_format }}</span>
-                            </div>
-                            @endif
-                        </div>
-                        <div class="text-muted">{!! $ed->short_description !!}</div>
-                    </div>
-                    @endforeach
-                </div>
             </div>
         </section>
 

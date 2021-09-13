@@ -10,28 +10,31 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class WorkExperience
+ * Class CvEntry
  *
  * @property int $id
  * @property int $user_id
- * @property string $work_title
- * @property string $company_name
- * @property string $short_description
- * @property Carbon $start_date
+ * @property int $cv_section_id
+ * @property string $title
+ * @property string $place_name
+ * @property string|null $short_description
+ * @property Carbon|null $start_date
  * @property Carbon|null $end_date
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  *
  * @property User $user
+ * @property CvSection $cv_section
  *
  * @package App\Models
  */
-class WorkExperience extends Model
+class CvEntry extends Model
 {
-    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
-    protected $table = 'work_experiences';
-    public $timestamps = false;
+    protected $table = 'cv_entries';
 
     protected $casts = [
-        'user_id' => 'int'
+        'user_id' => 'int',
+        'cv_section_id' => 'int'
     ];
 
     protected $dates = [
@@ -41,8 +44,9 @@ class WorkExperience extends Model
 
     protected $fillable = [
         'user_id',
-        'work_title',
-        'company_name',
+        'cv_section_id',
+        'title',
+        'place_name',
         'short_description',
         'start_date',
         'end_date'
@@ -51,5 +55,10 @@ class WorkExperience extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function cv_section()
+    {
+        return $this->belongsTo(CvSection::class);
     }
 }

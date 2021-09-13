@@ -16,8 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $user = \App\Models\User::where('id', 1)->first();
     $projects = \App\Models\Project::where('user_id', $user->id)->orderBy('importance_score', 'DESC')->get();
-    $work_experiences = \App\Models\WorkExperience::where('user_id', $user->id)->orderBy('start_date', 'DESC')->get();
-    $education = \App\Models\Education::where('user_id', $user->id)->orderBy('start_date', 'DESC')->get();
+
+    // put the entries as an array of the sections
+    $cv_sections = \App\Models\CvSection::orderBy('priority', 'DESC')->get()->toArray();
+    foreach ($cv_sections as $key => $cv_section_arr) {
+        $cv_sections[$key]['entries'] =
+        \App\Models\CvEntry::where('cv_section_id', $cv_sections[$key]['id'])
+        ->orderBy('start_date', 'DESC')->get();
+    }
+
     $skills_db = \App\Models\Skill::where('user_id', $user->id)
     ->join('skill_groups as sg', 'skills.skill_group_id', '=', 'sg.id')
     ->orderBy('sg.updated_at', 'DESC')->orderBy('progress', 'DESC')
@@ -32,7 +39,7 @@ Route::get('/', function () {
     }
 
     return view('index', ['user'=>$user, 'projects'=>$projects,
-    'work_experiences'=>$work_experiences, 'education'=>$education,
+    'cv_data'=>$cv_sections,
     'skills_arr'=>$skills_arr]);
 })->name('home');
 

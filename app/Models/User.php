@@ -33,7 +33,6 @@ use Intervention\Image\ImageManagerStatic as Image;
  * @property Carbon|null $updated_at
  *
  * @property Collection|Project[] $projects
- * @property Collection|WorkExperience[] $work_experiences
  *
  * @package App\Models
  */
@@ -65,6 +64,11 @@ class User extends Authenticatable
         $this->attributes['password'] = \Hash::make($value);
     }
 
+    public function cv_entries()
+    {
+        return $this->hasMany(CvEntry::class);
+    }
+
     public function projects()
     {
         return $this->hasMany(Project::class);
@@ -73,11 +77,6 @@ class User extends Authenticatable
     public function skills()
     {
         return $this->hasMany(Skill::class);
-    }
-
-    public function work_experiences()
-    {
-        return $this->hasMany(WorkExperience::class);
     }
 
     public function setImageUrlAttribute($value)
