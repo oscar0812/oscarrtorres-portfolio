@@ -23,6 +23,7 @@
                 <div class="avatar" style="background-image:url(&quot;{{ asset($project->image_url) }}&quot;);"></div>
                 <div class="about-me">
                     <h2>{{ $project->title }}</h2>
+
                     @if($project->start_date !=null)
                     @php
                     $end_format = 'Present';
@@ -35,8 +36,14 @@
                     @endif
                     @foreach ($skill_arr as $skill)
                       <span class="badge rounded-pill bg-primary">{{ $skill }}</span>
-
                     @endforeach
+                    <br>
+                    @if(!$project->attrEmpty('hosted_at_url'))
+                    <a href="{{  $project->hosted_at_url }}"> URL</a>
+                    @endif
+                    @if(!$project->attrEmpty('github_url'))
+                    <a href="{{ $project->github_url }}"> URL</a>
+                    @endif
 
                 </div>
             </div>
