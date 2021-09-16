@@ -43,6 +43,15 @@ Route::get('/', function () {
     'skills_arr'=>$skills_arr]);
 })->name('home');
 
+Route::get('/test', function () {
+    /*
+    $projects = \App\Models\Project::get();
+    foreach ($projects as $project) {
+        $project->save();
+    }
+    */
+});
+
 Route::get('/project-details/{slug}', function ($slug) {
     $user = \App\Models\User::where('id', 1)->first();
     $project = \App\Models\Project::where('slug', $slug)->first();

@@ -85,6 +85,9 @@
                                 @if(!$project->attrEmpty('hosted_at_url'))
                                 <button type="button" data-link-to="{{  $project->hosted_at_url }}" class="btn btn-outline-success"><i class="icon ion-link"></i> URL</button>
                                 @endif
+                                @if(backpack_user()!= null && backpack_user()->id == $project->user_id)
+                                <button type="button" data-link-to="{{  backpack_url('project').'/'.$project->id.'/edit' }}" class="btn btn-outline-info"><i class="icon ion-android-create"></i> Edit</button>
+                                @endif
                             </div>
                         </div>
                     </div>
