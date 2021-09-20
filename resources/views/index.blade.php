@@ -155,13 +155,18 @@
                               <div class="col-md-{{ $row_num }}">
                                   <div class="skills portfolio-info-card">
                                       <h2>{{ $skill_name }}</h2>
+                                      @php $skill_name_arr = [] @endphp
                                       @foreach ($skills as $skill)
+                                        @php array_push($skill_name_arr, $skill->name) @endphp
                                         <h3>{{ $skill->name }}</h3>
                                         <div class="progress">
                                             <div class="progress-bar" aria-valuenow="{{ $skill->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $skill->progress }}%;"><span class="visually-hidden">{{ $skill->progress }}%</span></div>
                                         </div>
                                       @endforeach
 
+                                      @if(backpack_user() != null)
+                                        <span>{{ implode(', ', $skill_name_arr) }}</span>
+                                      @endif
                                   </div>
                               </div>
                             @endforeach
