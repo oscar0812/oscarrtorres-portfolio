@@ -40,12 +40,25 @@ class CvEntryCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('user_id');
-        CRUD::column('cv_section_id');
         CRUD::column('title');
+        CRUD::column('cv_section_id');
         CRUD::column('place_name');
         CRUD::column('short_description');
         CRUD::column('start_date');
         CRUD::column('end_date');
+
+        $arr_ = \App\Models\CvSection::get();
+        $id_to_name = [];
+        foreach ($arr_ as $obj) {
+            $id_to_name[$obj->id] = $obj->name;
+        }
+
+        CRUD::addFilter([
+          'name'  => 'cv_section',
+          'type'  => 'select2',
+        ], $id_to_name, function ($value) { // if the filter is active
+            CRUD::addClause('where', 'cv_section_id', $value);
+        });
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
